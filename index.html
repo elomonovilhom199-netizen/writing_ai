@@ -1,1 +1,95 @@
-<h1>Salom Dunyo</h1>
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing AI Premium Agent</title>
+    <script src="https://tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cloudflare.com">
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans">
+
+    <!-- Navbar -->
+    <nav class="border-b border-slate-800 bg-slate-900/50 backdrop-blur sticky top-0 z-50 px-4 lg:px-8 py-4 flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+            <div class="bg-blue-600 p-2 rounded-lg text-white">
+                <i class="fa-solid fa-pen-nib text-xl"></i>
+            </div>
+            <span class="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">Writing AI</span>
+        </div>
+        <div class="flex items-center space-x-4">
+            <span class="text-sm text-slate-400 bg-slate-800 px-3 py-1 rounded-full"><i class="fa-solid fa-bolt text-yellow-400 mr-1"></i> Free Credits: 3/3</span>
+            <button class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-medium px-4 py-2 rounded-lg text-sm transition shadow-lg shadow-blue-500/20">
+                <i class="fa-solid fa-crown text-yellow-400 mr-1"></i> Upgrade to Pro ($9/mo)
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-5xl w-full mx-auto p-4 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Input Panel -->
+        <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-5 flex flex-col space-y-4 shadow-xl">
+            <div class="flex items-center justify-between">
+                <label class="text-sm font-semibold uppercase tracking-wider text-slate-400">Your Text / Prompt</label>
+                <select id="ai-task" class="bg-slate-700 border border-slate-600 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:border-blue-500 text-slate-200">
+                    <option value="improve">Improve Writing & Grammar</option>
+                    <option value="professional">Make it Professional</option>
+                    <option value="translate">Translate to English</option>
+                    <option value="blog">Generate Blog Post</option>
+                </select>
+            </div>
+            
+            <textarea id="user-input" class="w-full flex-1 min-h-[250px] md:min-h-full bg-slate-900 border border-slate-700/50 rounded-xl p-4 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-500 transition resize-none" placeholder="Paste your text here or type what you want the AI to write..."></textarea>
+            
+            <button onclick="processText()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 rounded-xl transition flex items-center justify-center space-x-2 shadow-lg shadow-blue-600/30">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <span>Generate with AI</span>
+            </button>
+        </div>
+
+        <!-- Output Panel -->
+        <div class="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-5 flex flex-col space-y-4 shadow-xl">
+            <div class="flex items-center justify-between">
+                <span class="text-sm font-semibold uppercase tracking-wider text-slate-400">AI Result</span>
+                <button onclick="copyToClipboard()" class="text-slate-400 hover:text-white text-sm bg-slate-700/50 hover:bg-slate-700 px-3 py-1.5 rounded-lg transition">
+                    <i class="fa-regular fa-copy mr-1"></i> Copy
+                </button>
+            </div>
+            
+            <div id="ai-output" class="w-full flex-1 min-h-[250px] bg-slate-900 border border-slate-700/50 rounded-xl p-4 text-slate-300 overflow-y-auto whitespace-pre-wrap">AI responses will appear here after generation...</div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-6 text-center text-sm text-slate-500">
+        &copy; 2026 Writing AI Agent. Built for Monetization.
+    </footer>
+
+    <script>
+        function processText() {
+            const input = document.getElementById('user-input').value;
+            const output = document.getElementById('ai-output');
+            
+            if (!input.trim()) {
+                alert('Please enter some text first!');
+                return;
+            }
+
+            output.innerHTML = '<div class="flex items-center space-x-2 text-blue-400"><i class="fa-solid fa-spinner animate-spin"></i> <span>AI is thinking...</span></div>';
+            
+            // Keyingi bosqichda buni OpenAI API bilan bog'laymiz
+            setTimeout(() => {
+                output.innerText = "This is a premium template preview. Connect your OpenAI API Key in the next step to enable live AI generations and start making money!";
+            }, 1500);
+        }
+
+        function copyToClipboard() {
+            const text = document.getElementById('ai-output').innerText;
+            navigator.clipboard.writeText(text);
+            alert('Copied to clipboard!');
+        }
+    </script>
+</body>
+</html>
